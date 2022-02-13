@@ -1,0 +1,21 @@
+{
+  "name": "@tuomo/lerna-vue-3-express-starter",
+  "private": true,
+  "version": "1.0.0",
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "lerna run dev",
+    "test": "lerna run test && lerna run test:e2e",
+    "test:unit": "lerna run test:unit",
+    "test:e2e": "lerna run test:e2e",
+    "lint": "eslint --ext js, vue .",
+    "build": "lerna run build:test && lerna run build && lerna run test:e2e",
+    "new-version": "lerna version --conventional-commits --yes",
+    "diff": "lerna diff"
+  }
+}
