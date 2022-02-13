@@ -7,10 +7,10 @@ router.get('/', (req, res) => {
   res.send('Hello Lerna');
 });
 
-router.get('/citizens', (req, res) => {
+router.get('/citizens', async (req, res) => {
   const citizens = new CitizenController();
 
-  res.send(citizens.getCitizens());
+  res.send(await citizens.getCitizens());
 });
 
 export default router;

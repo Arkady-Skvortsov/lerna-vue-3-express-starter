@@ -7,7 +7,7 @@ export default class CitizenController {
 
   async getCitizens() {
     try {
-      return this.citizenService.getCitizens();
+      return await this.citizenService.getCitizens();
     } catch (e) {
       throw new Error('Не удалось получить всех граждан');
     }

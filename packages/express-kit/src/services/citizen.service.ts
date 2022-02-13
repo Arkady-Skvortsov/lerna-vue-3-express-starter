@@ -2,11 +2,11 @@ import CitizensModel from '../models/citizens.model';
 import CitiesModel from '../models/cities.model';
 
 export default class CitizenService {
-  private citiesModel = CitiesModel;
+  private citizensModel = CitizensModel;
 
   constructor() {}
 
-  getCitizens() {
-    return this.citiesModel.find();
+  async getCitizens() {
+    return await this.citizensModel.find().exec();
   }
 }
