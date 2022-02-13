@@ -33,13 +33,13 @@ jobs:
       - name: Run ESlint Linter
         run: npm run lint
 
-      - name: Run tests # Run tests of all packages
+      - name: Run tests
         run: npx lerna exec npm run test
 
       - name: Build a project
         run: npm run build
 
-      - name: "Version and publish" # Interesting step
+      - name: "Version and publish"
         env:
           GH_TOKEN: ${{ secrets.PUBLISH_PACKAGES }}
         run: |
