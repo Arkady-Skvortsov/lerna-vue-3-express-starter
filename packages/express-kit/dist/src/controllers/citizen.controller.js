@@ -20,7 +20,7 @@ class CitizenController {
     getCitizens() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                return this.citizenService.getCitizens();
+                return yield this.citizenService.getCitizens();
             }
             catch (e) {
                 throw new Error('Не удалось получить всех граждан');
