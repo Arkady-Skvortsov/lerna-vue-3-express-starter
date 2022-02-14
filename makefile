@@ -44,3 +44,4 @@ chain-to-die:
 	docker-compose stop
 	docker rmi server-lerna-image
 	docker rmi client-lerna-image
+

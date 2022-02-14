@@ -13,5 +13,6 @@ describe('Test CitizenController', () => {
     it('Should be return all citizens', () => __awaiter(void 0, void 0, void 0, function* () {
         expect(2).not.toBeInstanceOf(String);
     }));
+    xit('Should be return "Hello Lerna" message', () => { });
 });
 //# sourceMappingURL=citizen.controller.spec.js.map

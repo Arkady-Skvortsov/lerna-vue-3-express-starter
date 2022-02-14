@@ -6,6 +6,7 @@
   "scripts": {
     "start": "tsc && node dist/index.js",
     "dev": "tsc && nodemon dist/index.js",
+    "check:prettier": "prettier --config ./.prettierrcs.json --check ./dist/**/*.js",
     "test": "tsc && jest dist/test",
     "test:watch": "tsc && jest dist/test --watch",
     "test:unit": "tsc && jest dist/test/unit",

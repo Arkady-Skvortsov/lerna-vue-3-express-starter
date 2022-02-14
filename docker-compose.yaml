@@ -4,13 +4,14 @@ services:
   client:
     image: client-lerna-image
     container_name: vue-3-lerna-container
+    restart: always
     depends_on:
       - server
     build:
       context: ./packages/vue-3-kit
       dockerfile: dockerfile
     volumes:
-      - packages/vue-3-kit
+      - ./packages/vue-3-kit
     ports:
       - 3000:3000
     networks:
@@ -19,13 +20,14 @@ services:
   server:
     image: server-lerna-image
     container_name: express-lerna-container
+    restart: always
     depends_on:
       - mongodb
     build:
       context: ./packages/express-kit
       dockerfile: dockerfile
     volumes:
-      - packages/express-kit/.env
+      - ./packages/express-kit/.env
     ports:
       - 5500:5500
     networks:
@@ -38,11 +40,16 @@ services:
       - 27017:27017
     env_file:
       - ./packages/express-kit/.env
+    volumes:
+      - mongodb:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME
       - MONGO_INITDB_ROOT_PASSWORD
     networks:
       - lerna-network
+
+volumes:
+  mongodb:
 
 networks:
   lerna-network:

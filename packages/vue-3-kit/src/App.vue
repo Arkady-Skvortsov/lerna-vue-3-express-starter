@@ -1,20 +1,13 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
+import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
-  <div class="wrapper">
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/citizens">Citizens</RouterLink>
-    </nav>
-  </div>
-
   <RouterView />
 </template>
 
 <style>
-@import "@/assets/base.css";
+@import '@/assets/base.css';
 
 #app {
   max-width: 1280px;
@@ -24,7 +17,7 @@ import { RouterLink, RouterView } from "vue-router";
   font-weight: normal;
 }
 
-nav {
+/* nav {
   width: 100%;
   font-size: 12px;
   text-align: center;
@@ -85,5 +78,5 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
-}
+} */
 </style>
