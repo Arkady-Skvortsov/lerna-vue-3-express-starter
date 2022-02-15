@@ -1,9 +1,9 @@
 <template>
   <div class="home-container">
     <div
-      class=""
+      class="home-container__citizen-block"
       :key="citizen._id"
-      @mouseover="getCitizens(index)"
+      @mouseover="getCitizenInformation(index)"
       v-for="(citizen, index) of citizens"
     >
       {{ citizen.name }}
@@ -22,17 +22,25 @@ export default {
   },
 
   methods: {
-    getCitizens(index: number) {
-      const el = this.citizens.filter((citizen, i) => citizen[i] === index);
+    getCitizenInformation(index: number) {
+      const el = this.citizens.find((citizen, idx) => idx === index);
 
-      console.log(el);
+      el.groups.map((group) => {
+        alert(JSON.stringify(group.name));
+      });
     },
   },
 
   mounted() {
-    axios.get("http://localhost:5501/citizens").then((response) => {
-      this.citizens = response.data;
-    });
+    axios
+      .get("http://localhost:5502/citizens", { method: "GET" })
+      .then((response) => {
+        this.citizens = response.data;
+
+        this.citizens.map((citizen) => {
+          console.log(citizen);
+        });
+      });
   },
 };
 </script>
@@ -42,5 +50,15 @@ export default {
   margin: auto;
   position: center;
   max-width: 90%;
+
+  &__citizen-block {
+    margin-top: 20px;
+    width: 250px;
+    height: 75px;
+    cursor: pointer;
+    background: black;
+    color: white;
+    text-align: center;
+  }
 }
 </style>
