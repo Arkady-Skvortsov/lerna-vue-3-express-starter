@@ -1,24 +1,38 @@
 <template>
   <div class="home-container">
-    <div @mouseover="getCitizens" v-for="citizen of citizens">
+    <div
+      class=""
+      :key="citizen._id"
+      @mouseover="getCitizens(index)"
+      v-for="(citizen, index) of citizens"
+    >
       {{ citizen.name }}
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { onMounted } from "vue";
-import { storeToRefs, mapActions } from "pinia";
 import axios from "axios";
-import { useCitizensStore } from "../stores/citizens";
 
 export default {
-  setup() {
-    const citizensStore = useCitizensStore();
+  data() {
+    return {
+      citizens: [],
+    };
+  },
 
-    const { citizens } = storeToRefs(citizensStore);
+  methods: {
+    getCitizens(index: number) {
+      const el = this.citizens.filter((citizen, i) => citizen[i] === index);
 
-    const { getCitizens } = mapActions(useCitizensStore, ["getCitizens"]);
+      console.log(el);
+    },
+  },
+
+  mounted() {
+    axios.get("http://localhost:5501/citizens").then((response) => {
+      this.citizens = response.data;
+    });
   },
 };
 </script>

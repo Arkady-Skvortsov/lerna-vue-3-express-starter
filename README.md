@@ -2,11 +2,13 @@
 
 # About: it's lerna monorepo vue3 / express starter kit for you'r next project :)
 
+Language: TypeScript
+
 Frontend app: Vue 3
 
 State management: Pinia
 
-Bakcned app: Express
+Backend app: Express
 
 Tests: Jest (Unit / E2E)
 

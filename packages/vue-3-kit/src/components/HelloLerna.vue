@@ -9,23 +9,20 @@
 </template>
 
 <script lang="ts">
-import { mapState } from "pinia";
+import { ref, onMounted, computed, defineComponent } from "vue";
 import axios from "axios";
-import { useCitizensStore } from "../stores/citizens";
 
 export default {
   data() {
     return {
-      text: "Hello Lerna",
+      text: "",
     };
   },
 
-  async computed() {
-    const citizens = await axios.get("http://localhost:5500/citizens", {
-      method: "GET",
-    });
-
-    console.log(citizens);
+  mounted() {
+    axios
+      .get("http://localhost:5501")
+      .then((response) => (this.text = response.data));
   },
 };
 </script>
@@ -45,6 +42,10 @@ export default {
   .text-container {
     margin-top: 10px;
     margin: auto;
+
+    h1 {
+      color: red;
+    }
   }
 }
 </style>
