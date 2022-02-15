@@ -8,7 +8,7 @@ import router from './src/routers/router';
 
 const app = express();
 
-const PORT = 5500 ?? process.env.PORT;
+const PORT = 5501 ?? process.env.PORT;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

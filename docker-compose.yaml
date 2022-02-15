@@ -9,8 +9,14 @@ services:
     build:
       context: ./packages/vue-3-kit
       dockerfile: dockerfile
+    healthcheck:
+      test: curl -sS http://127.0.0.1:3000 || echo 1
+      interval: 1m
+      timeout: 30s
+      retries: 3
+      start_period: 30s
     volumes:
-      - packages/vue-3-kit
+      - ./packages/vue-3-kit
     ports:
       - 3000:3000
     networks:
@@ -24,10 +30,16 @@ services:
     build:
       context: ./packages/express-kit
       dockerfile: dockerfile
+    healthcheck:
+      test: curl -sS http://127.0.0.1:5500 || echo 1
+      interval: 1m
+      timeout: 30s
+      retries: 3
+      start_period: 30s
     volumes:
-      - packages/express-kit/.env
+      - ./packages/express-kit
     ports:
-      - 5500:5500
+      - 5501:5501
     networks:
       - lerna-network
 
