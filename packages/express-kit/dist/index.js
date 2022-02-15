@@ -19,7 +19,7 @@ const helmet_1 = __importDefault(require("helmet"));
 require('dotenv').config();
 const router_1 = __importDefault(require("./src/routers/router"));
 const app = (0, express_1.default)();
-const PORT = 5501 !== null && 5501 !== void 0 ? 5501 : process.env.PORT;
+const PORT = 5502 !== null && 5502 !== void 0 ? 5502 : process.env.PORT;
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({

@@ -21,7 +21,7 @@ export default {
 
   mounted() {
     axios
-      .get("http://localhost:5501")
+      .get("http://localhost:5502")
       .then((response) => (this.text = response.data));
   },
 };
