@@ -8,7 +8,7 @@ import router from './src/routers/router';
 
 const app = express();
 
-const PORT = 5502 ?? process.env.PORT;
+const PORT = 5500 ?? process.env.PORT;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -26,7 +26,7 @@ app.listen(PORT, async () => {
   try {
     mongoose
       .connect(
-        `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@lerna-vue-3-express-sta.kxgo1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+        `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@lerna-vue-3-express-sta.kxgo1.mongodb.net/lerna-vue-3-express?retryWrites=true&w=majority`
       )
       .then(() => console.log('Mongoose had been connected'))
       .catch((e) => console.log(e));

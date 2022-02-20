@@ -12,20 +12,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const citizen_controller_1 = __importDefault(require("../controllers/citizen.controller"));
-const cities_controller_1 = __importDefault(require("../controllers/cities.controller"));
-const router = (0, express_1.Router)();
-router.get('/', (req, res) => {
-    res.send('Hello Lerna');
-});
-router.get('/citizens', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const citizensController = new citizen_controller_1.default();
-    res.send(yield citizensController.getCitizens());
-}));
-router.get('/cities', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const citiesController = new cities_controller_1.default();
-    res.send(yield citiesController.getCities());
-}));
-exports.default = router;
-//# sourceMappingURL=router.js.map
+const cities_model_1 = __importDefault(require("../models/cities.model"));
+class CitiesService {
+    constructor() {
+        this.citiesModel = cities_model_1.default;
+    }
+    getCities() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.citiesModel.find().exec();
+        });
+    }
+}
+exports.default = CitiesService;
+//# sourceMappingURL=cities.service.js.map

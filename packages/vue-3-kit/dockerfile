@@ -1,6 +1,7 @@
+# build stage
 FROM node:lts-alpine
 
-WORKDIR /usr/src/vue-3-kit
+WORKDIR /packages/vue-3-kit
 
 COPY package*.json ./
 
@@ -8,8 +9,22 @@ RUN npm install
 
 RUN npm install -g http-server
 
+RUN npm install sass
+
 COPY . ./
 
-RUN npm install
+RUN npm run build
 
-CMD ["npm", "run", "dev"]
+EXPOSE 3000
+
+CMD ["http-server", './dist']
+
+
+# production stage
+FROM nginx:stable-alpine as production-stage
+
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
