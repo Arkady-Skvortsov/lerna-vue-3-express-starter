@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { ref, onMounted, computed, defineComponent } from "vue";
 import axios from "axios";
 
@@ -21,7 +21,7 @@ export default {
 
   mounted() {
     axios
-      .get("http://localhost:5502")
+      .get("http://localhost:5500")
       .then((response) => (this.text = response.data));
   },
 };

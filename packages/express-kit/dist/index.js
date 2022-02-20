@@ -32,7 +32,7 @@ app.use(router_1.default);
 app.listen(PORT, () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         mongoose_1.default
-            .connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@lerna-vue-3-express-sta.kxgo1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`)
+            .connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@lerna-vue-3-express-sta.kxgo1.mongodb.net/lerna-vue-3-express?retryWrites=true&w=majority`)
             .then(() => console.log('Mongoose had been connected'))
             .catch((e) => console.log(e));
         console.log(`Server had been started at ${PORT} port`);

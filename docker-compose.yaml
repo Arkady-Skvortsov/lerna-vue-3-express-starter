@@ -2,15 +2,15 @@ version: "3.9"
 
 services:
   client:
-    image: client-lerna-image
+    image: 389798/client-lerna-image
     container_name: vue-3-lerna-container
-    depends_on:
-      - server
     build:
       context: ./packages/vue-3-kit
-      dockerfile: dockerfile
+      dockerfile: ./dockerfile
+    depends_on:
+      - server
     healthcheck:
-      test: curl -sS http://127.0.0.1:3030 || echo 1
+      test: curl -sS http://127.0.0.1:3000 || echo 1
       interval: 1m
       timeout: 30s
       retries: 3
@@ -18,28 +18,29 @@ services:
     volumes:
       - ./packages/vue-3-kit
     ports:
-      - 3030:3030
+      - 3000:3000
     networks:
       - lerna-network
 
   server:
-    image: server-lerna-image
+    image: 389798/server-lerna-image
     container_name: express-lerna-container
-    depends_on:
-      - mongodb
     build:
       context: ./packages/express-kit
-      dockerfile: dockerfile
+      dockerfile: ./dockerfile
     healthcheck:
       test: curl -sS http://127.0.0.1:5502 || echo 1
       interval: 1m
       timeout: 30s
       retries: 3
       start_period: 30s
+    command: npm run dev
+    depends_on:
+      - mongodb
     volumes:
       - ./packages/express-kit
     ports:
-      - 5502:5502
+      - 5500:5500
     networks:
       - lerna-network
 
@@ -50,11 +51,16 @@ services:
       - 27017:27017
     env_file:
       - ./packages/express-kit/.env
+    volumes:
+      - mongodb-data:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME
       - MONGO_INITDB_ROOT_PASSWORD
     networks:
       - lerna-network
+
+volumes:
+  mongodb-data:
 
 networks:
   lerna-network:

@@ -14,7 +14,6 @@
     "test:unit": "lerna run test:unit",
     "test:e2e": "lerna run test:e2e",
     "lint": "eslint --ext js, vue .",
-    "build": "lerna run build:test && lerna run build && lerna run test:e2e",
     "new-version": "lerna version --conventional-commits --yes",
     "diff": "lerna diff"
   }

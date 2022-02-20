@@ -1,46 +1,52 @@
 <template>
   <div class="home-container">
     <div
-      class="home-container__citizen-block"
-      :key="citizen._id"
-      @mouseover="getCitizenInformation(index)"
-      v-for="(citizen, index) of citizens"
+      class="cities-block"
+      v-for="(city, index) in filteredArray"
+      :key="city"
     >
-      {{ citizen.name }}
+      <h1>{{ city.name }}</h1>
+
+      <ul v-for="citizen in city.citizens">
+        <li>
+          ({{ citizen.groups.map((group) => group.name).join(" ") }}) -
+          {{ citizen.name }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import axios from "axios";
 
 export default {
   data() {
     return {
       citizens: [],
+      cities: [],
     };
   },
 
-  methods: {
-    getCitizenInformation(index: number) {
-      const el = this.citizens.find((citizen, idx) => idx === index);
+  async mounted() {
+    this.citizens = await axios
+      .get("http://localhost:5500/citizens")
+      .then((payload) => payload.data);
 
-      el.groups.map((group) => {
-        alert(JSON.stringify(group.name));
-      });
-    },
+    this.cities = await axios
+      .get("http://localhost:5500/cities")
+      .then((payload) => payload.data);
   },
 
-  mounted() {
-    axios
-      .get("http://localhost:5502/citizens", { method: "GET" })
-      .then((response) => {
-        this.citizens = response.data;
-
-        this.citizens.map((citizen) => {
-          console.log(citizen);
-        });
+  computed: {
+    filteredArray() {
+      return this.cities.map((city) => {
+        const citizens = this.citizens.filter(
+          (citizen) => citizen.city_id === city._id
+        );
+        return { ...city, citizens };
       });
+    },
   },
 };
 </script>
@@ -48,17 +54,20 @@ export default {
 <style lang="scss">
 .home-container {
   margin: auto;
-  position: center;
   max-width: 90%;
 
-  &__citizen-block {
+  .cities-block {
     margin-top: 20px;
-    width: 250px;
-    height: 75px;
+    max-width: 550px;
+    min-height: 450px;
     cursor: pointer;
     background: black;
     color: white;
     text-align: center;
+
+    ul {
+      list-style-type: none;
+    }
   }
 }
 </style>

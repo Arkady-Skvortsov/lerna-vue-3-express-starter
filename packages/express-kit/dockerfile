@@ -1,6 +1,6 @@
 FROM node:lts-alpine
 
-WORKDIR /usr/src/express-kit
+WORKDIR /packages/express-kit
 
 COPY package*.json ./
 
@@ -8,4 +8,6 @@ RUN npm install
 
 COPY . ./
 
-CMD ["npm", "run", "dev"]
+EXPOSE 5502
+
+CMD ["npm", "run", "build"]
