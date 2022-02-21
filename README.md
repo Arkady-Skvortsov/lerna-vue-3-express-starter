@@ -22,7 +22,7 @@ Formatter: Prettier
 
 # Lerna scripts
 
-start apps: _npm run start_
+start apps: _npm run dev_
 
 unit test apps: _npm run test:unit_
 
@@ -38,7 +38,7 @@ pull server-lerna-image: **make pull-server-lerna-image**
 
 pull client-lerna-image: **make pull-client-lerna-image**
 
-pull mongo-lerna-image: **make pull-mongon-lerna-image**
+pull mongo-lerna-image: **make pull-mongo-lerna-image**
 
 # Build
 

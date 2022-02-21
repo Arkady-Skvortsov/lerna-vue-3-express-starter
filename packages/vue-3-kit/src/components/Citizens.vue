@@ -30,11 +30,11 @@ export default {
 
   async mounted() {
     this.citizens = await axios
-      .get("http://localhost:5500/citizens")
+      .get("http://localhost:5502/citizens")
       .then((payload) => payload.data);
 
     this.cities = await axios
-      .get("http://localhost:5500/cities")
+      .get("http://localhost:5502/cities")
       .then((payload) => payload.data);
   },
 
